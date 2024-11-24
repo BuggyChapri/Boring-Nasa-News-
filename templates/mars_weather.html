@@ -15,11 +15,12 @@
     <h1 class="text-center text-dark mb-4">Mars Weather Data</h1>
     
     <div class="card shadow-lg">
+        <img src="https://i.ytimg.com/vi/JPjyMMkzDmI/maxresdefault.jpg" alt="" srcset="">
         {% if mars_data %}
             <div class="card-body">
                 <h3 class="card-title text-center text-warning">Sol Data</h3>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><strong>Date:</strong> {{ mars_data['675'].First_UTC }}</li>
+                    <li class="list-group-item"><strong>Date:</strong> {{ mars_data['678'].First_UTC }}</li>
                     <li class="list-group-item"><strong>Average Temperature:</strong> {{ mars_data['675'].AT.av }}°C</li>
                     <li class="list-group-item"><strong>Min Temperature:</strong> {{ mars_data['675'].AT.mn }}°C</li>
                     <li class="list-group-item"><strong>Max Temperature:</strong> {{ mars_data['675'].AT.mx }}°C</li>
