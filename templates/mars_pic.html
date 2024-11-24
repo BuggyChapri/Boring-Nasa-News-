@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+{% block body %}
+    <h1>
+        Mars Rover photos
+    </h1>
+    <div class="image">
+        {% if mars_data %}
+            {% for m_data in photo_data %}
+                <p>
+                    title -: {{m_data.id}}
+                </p>
+            {% endfor %}
+        {% else %}
+            <h1>
+                Unable to fetch data from server
+            </h1>
+        {% endif %}
+    </div>
+{% endblock %}

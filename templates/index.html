@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+{% block body %}
+    <nav>
+        <header>
+            <a href="space_weather">CMS Updates</a>
+            <a href="mars_pic">Mars Stuff</a>
+        </header>
+    </nav>
+    <h1>Welocme to thr boring Space news and things idk....</h1>
+
+    <div class="header">
+        {% if title_image %}
+            {% for item in title_image %}
+                <h4>{{ item.title }}</h4>
+                <p> {{ item.explanation }}</p>
+                <img src="{{item.url}}" alt="nasa" srcset="">
+            {% endfor %}
+        {% else %}
+            
+        {% endif %}
+    </div>
+
+    <div class="news_knowledge">
+        <h1>
+            The Boring knowledge
+        </h1>
+        <p>
+            Today's top space knowledge -  
+        </p>
+        {% if response_value %}
+            {% for item in response_value %}
+                    <div>
+                        <h3>{{ item.title }}</h3>
+                        <img src="{{ item.url }}" alt="{{ item.title }}" style="max-width: 500px;">
+                        <p>{{ item.explanation }}</p>
+                    </div>
+            {% endfor %}
+        {% else %}
+            <p>No images for today</p>
+        {% endif %}
+    </div>
+
+    <div class="neos">
+        <h1>
+            Neo's (Near earth objects) -:
+        </h1>
+        {% if neos_r %}
+            {% for item in neos_r %}
+                <h3>Neo: Name - {{item.name}}</h3>
+            {% endfor %}            
+        {% else %}
+            <p>nothing for today</p>
+        {% endif %}
+    </div>
+
+{% endblock %}

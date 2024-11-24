@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% block body %}
+    <h1>
+        Today's Coronal Mass Ejection Updates for past 30 days
+    </h1>
+
+    <div>
+        <p>
+            Coronal mass ejections (CMEs) are huge bubbles of coronal plasma threaded by intense magnetic field lines that are ejected from the Sun over the course of several hours.
+        </p>
+        {% if data %}
+            {% for data_ in data %}
+                <ul>
+                    <li>Time - {{data_.time21_5}}</li>
+                    <li>latitude - {{data_.latitude}}</li>
+                    <li>longitude - {{data_.longitude}}</li>
+                    <li>Half Angle - {{data_.halfAngle}}</li>
+                    <li>speed - {{data_.speed}}</li>
+                    <li>Type: {{ data_.type }}</li>
+                    <li>Associated CME ID: {{ data_.associatedCMEID }}</li>
+                    <li>Note: {{ data_.note }}</li>
+                    <li>Catalog: {{ data_.catalog }}</li>
+                    <li>Feature Code: {{ data_.featureCode }}</li>
+                    <li>Measurement Technique: {{ data_.measurementTechnique }}</li>
+                </ul>
+            {% endfor %}
+        {% else %}
+            <h1>
+                lol 
+            </h1>
+        {% endif %}
+    </div>
+{% endblock %}
