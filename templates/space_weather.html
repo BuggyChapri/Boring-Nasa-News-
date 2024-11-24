@@ -1,33 +1,66 @@
 {% extends 'layout.html' %}
 {% block body %}
-    <h1>
-        Today's Coronal Mass Ejection Updates for past 30 days
-    </h1>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="/">Boring Space News</a>
+        <div class="navbar-nav">
+            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="/space_weather">CMS Updates</a>
+            <a class="nav-link" href="/mars_weather">Mars Weather</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container my-4">
+    <h1 class="text-center text-primary mb-4">Today's Coronal Mass Ejection Updates</h1>
+    <p class="text-muted text-center">
+        Coronal mass ejections (CMEs) are huge bubbles of coronal plasma threaded by intense magnetic field lines 
+        that are ejected from the Sun over the course of several hours.
+    </p>
 
     <div>
-        <p>
-            Coronal mass ejections (CMEs) are huge bubbles of coronal plasma threaded by intense magnetic field lines that are ejected from the Sun over the course of several hours.
-        </p>
         {% if data %}
-            {% for data_ in data %}
-                <ul>
-                    <li>Time - {{data_.time21_5}}</li>
-                    <li>latitude - {{data_.latitude}}</li>
-                    <li>longitude - {{data_.longitude}}</li>
-                    <li>Half Angle - {{data_.halfAngle}}</li>
-                    <li>speed - {{data_.speed}}</li>
-                    <li>Type: {{ data_.type }}</li>
-                    <li>Associated CME ID: {{ data_.associatedCMEID }}</li>
-                    <li>Note: {{ data_.note }}</li>
-                    <li>Catalog: {{ data_.catalog }}</li>
-                    <li>Feature Code: {{ data_.featureCode }}</li>
-                    <li>Measurement Technique: {{ data_.measurementTechnique }}</li>
-                </ul>
-            {% endfor %}
+            <div class="accordion" id="cmeDataAccordion">
+                {% for data_ in data %}
+                    <div class="accordion-item mb-3">
+                        <h2 class="accordion-header" id="heading{{ loop.index }}">
+                            <button 
+                                class="accordion-button collapsed" 
+                                type="button" 
+                                data-bs-toggle="collapse" 
+                                data-bs-target="#collapse{{ loop.index }}" 
+                                aria-expanded="false" 
+                                aria-controls="collapse{{ loop.index }}">
+                                CME Update {{ loop.index }}
+                            </button>
+                        </h2>
+                        <div 
+                            id="collapse{{ loop.index }}" 
+                            class="accordion-collapse collapse" 
+                            aria-labelledby="heading{{ loop.index }}" 
+                            data-bs-parent="#cmeDataAccordion">
+                            <div class="accordion-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item"><strong>Time:</strong> {{ data_.time21_5 }}</li>
+                                    <li class="list-group-item"><strong>Latitude:</strong> {{ data_.latitude }}</li>
+                                    <li class="list-group-item"><strong>Longitude:</strong> {{ data_.longitude }}</li>
+                                    <li class="list-group-item"><strong>Half Angle:</strong> {{ data_.halfAngle }}</li>
+                                    <li class="list-group-item"><strong>Speed:</strong> {{ data_.speed }} km/s</li>
+                                    <li class="list-group-item"><strong>Type:</strong> {{ data_.type }}</li>
+                                    <li class="list-group-item"><strong>Associated CME ID:</strong> {{ data_.associatedCMEID }}</li>
+                                    <li class="list-group-item"><strong>Note:</strong> {{ data_.note }}</li>
+                                    <li class="list-group-item"><strong>Catalog:</strong> {{ data_.catalog }}</li>
+                                    <li class="list-group-item"><strong>Feature Code:</strong> {{ data_.featureCode }}</li>
+                                    <li class="list-group-item"><strong>Measurement Technique:</strong> {{ data_.measurementTechnique }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         {% else %}
-            <h1>
-                lol 
-            </h1>
+            <h1 class="text-center text-danger my-4">No data available at the moment</h1>
         {% endif %}
     </div>
+</div>
 {% endblock %}

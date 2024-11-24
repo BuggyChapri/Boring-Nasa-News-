@@ -1,56 +1,58 @@
 {% extends 'layout.html' %}
 {% block body %}
-    <nav>
-        <header>
-            <a href="space_weather">CMS Updates</a>
-            <a href="mars_pic">Mars Stuff</a>
-        </header>
-    </nav>
-    <h1>Welocme to thr boring Space news and things idk....</h1>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="/">Boring Space News</a>
+        <div class="navbar-nav">
+            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="/space_weather">CMS Updates</a>
+            <a class="nav-link" href="/mars_weather">Mars Weather</a>
+        </div>
+    </div>
+</nav>
 
-    <div class="header">
+<div class="container">
+    <h1 class="text-center text-primary my-4">Welcome to the Space News Portal</h1>
+    <p class="text-muted text-center">Your daily dose of space knowledge, weather, and fun facts!</p>
+
+    <!-- Header Section -->
+    <div class="header mb-4">
         {% if title_image %}
             {% for item in title_image %}
-                <h4>{{ item.title }}</h4>
-                <p> {{ item.explanation }}</p>
-                <img src="{{item.url}}" alt="nasa" srcset="">
-            {% endfor %}
-        {% else %}
-            
-        {% endif %}
-    </div>
-
-    <div class="news_knowledge">
-        <h1>
-            The Boring knowledge
-        </h1>
-        <p>
-            Today's top space knowledge -  
-        </p>
-        {% if response_value %}
-            {% for item in response_value %}
-                    <div>
-                        <h3>{{ item.title }}</h3>
-                        <img src="{{ item.url }}" alt="{{ item.title }}" style="max-width: 500px;">
-                        <p>{{ item.explanation }}</p>
+                <div class="card my-3">
+                    <div class="card-body">
+                        <h4 class="card-title text-secondary">{{ item.title }}</h4>
+                        <p class="card-text">{{ item.explanation }}</p>
                     </div>
+                    <img src="{{ item.url }}" alt="NASA image" class="card-img-bottom">
+                </div>
             {% endfor %}
         {% else %}
-            <p>No images for today</p>
+            <p class="text-danger">No images to display right now.</p>
         {% endif %}
     </div>
 
-    <div class="neos">
-        <h1>
-            Neo's (Near earth objects) -:
-        </h1>
-        {% if neos_r %}
-            {% for item in neos_r %}
-                <h3>Neo: Name - {{item.name}}</h3>
-            {% endfor %}            
+    <!-- News Knowledge Section -->
+    <div class="news_knowledge">
+        <h2 class="text-center text-success my-4">Today's Space Knowledge</h2>
+        <p class="text-muted text-center">Explore the mysteries of space with our top stories and insights.</p>
+        {% if response_value %}
+            <div class="row">
+                {% for item in response_value %}
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card mb-4">
+                            <img src="{{ item.url }}" alt="{{ item.title }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title text-dark">{{ item.title }}</h5>
+                                <p class="card-text">{{ item.explanation }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         {% else %}
-            <p>nothing for today</p>
+            <p class="text-danger text-center">No knowledge to display today. Check back later!</p>
         {% endif %}
     </div>
-
+</div>  
 {% endblock %}

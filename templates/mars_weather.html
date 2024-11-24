@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+{% block body %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="/">Boring Space News</a>
+        <div class="navbar-nav">
+            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="/space_weather">CMS Updates</a>
+            <a class="nav-link" href="/mars_weather">Mars Weather</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container my-4">
+    <h1 class="text-center text-dark mb-4">Mars Weather Data</h1>
+    
+    <div class="card shadow-lg">
+        {% if mars_data %}
+            <div class="card-body">
+                <h3 class="card-title text-center text-warning">Sol Data</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Date:</strong> {{ mars_data['675'].First_UTC }}</li>
+                    <li class="list-group-item"><strong>Average Temperature:</strong> {{ mars_data['675'].AT.av }}°C</li>
+                    <li class="list-group-item"><strong>Min Temperature:</strong> {{ mars_data['675'].AT.mn }}°C</li>
+                    <li class="list-group-item"><strong>Max Temperature:</strong> {{ mars_data['675'].AT.mx }}°C</li>
+                    <li class="list-group-item"><strong>Average Wind Speed:</strong> {{ mars_data['675'].HWS.av }} m/s</li>
+                    <li class="list-group-item"><strong>Pressure:</strong> {{ mars_data['675'].PRE.av }} Pa</li>
+                    <li class="list-group-item"><strong>Season:</strong> {{ mars_data['675'].Season }}</li>
+                    <li class="list-group-item"><strong>Most Common Wind Direction:</strong> {{ mars_data['675'].WD.most_common.compass_point }}</li>
+                </ul>
+            </div>
+        {% else %}
+            <div class="alert alert-warning text-center" role="alert">
+                <h2>Unable to fetch data from server</h2>
+                <p>Please try again later!</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
