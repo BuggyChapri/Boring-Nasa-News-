@@ -6,6 +6,8 @@ It's a boring (not really) space knowledge and kinda news app using nasa api
 
 So like the home page is where you will find 6 random but intersting facts about space and planets 🌍
 
+And then there is cms update where you will find around 20 depending on your date 📅 
+
 ### Prerequisites 🧑‍💻
 
 If you want to run it on local Machine then, The things you need before installing the software.
