@@ -6,7 +6,7 @@ It's a boring (not really) space knowledge and kinda news app using nasa api
 
 So like the home page is where you will find 6 random but intersting facts about space and planets 🌍
 
-And then there is cms(Coronal Mass Ejection) update where you will find around 20 depending on your date 📅 
+And then there is cms(Coronal Mass Ejection) update where you will find  around 20 depending on your date 📅 
 
 And then there is mara weather page where you will get mars weather update currently it's showing only 2020's thing's idk why but I will fix that 
 
